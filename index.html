@@ -1,0 +1,509 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet">
+    <style>
+        #cart {
+            top: 60px;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <!-- NAV -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Ecommerce</a>
+
+                <div class="position-relative">
+                    <button type="button" class="btn btn-primary" id="btn-cart">
+                        <i class="fas fa-shopping-cart"></i> <span class="badge badge-light" id="nav-qty-items">9</span>
+                        <span class="sr-only">Aucun article</span>
+                    </button>
+
+                    <a href="#" class="ml-2" data-toggle="modal" data-target="#modal-signin"><i class="fas fa-power-off"></i></a>
+
+                    <!-- CART DETAIL -->
+                    <div class="position-absolute" id="cart">
+                        <div class="card" style="width: 400px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Panier</h5>
+                            </div>
+                            <!-- List des articles -->
+                            <ul class="list-group list-group-flush" id="cart-product-lists"></ul>
+                            <!-- ./ List des articles -->
+
+                            <div class="card-body border-top">
+                                <h5 class="text-right"><span id="total-cart"></span> &euro;</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- ./ CART DETAIL -->
+                </div>
+            </div>
+        </nav>
+        <!-- ./ NAV -->
+    </header>
+    <!-- ./ HEADER -->
+
+    <main class="mt-5" role="main">
+        <br /><br />
+        <div class="container">
+            <div class="row">
+
+                <!-- ARTILCE-->
+                <div class="col-12 col-md-4 mb-3">
+                    <!-- CARD -->
+                    <div class="card" data-price="900.50" id="PC-ASUS-ROG">
+                        <img class="card-img-top" src="img/rog.jpg" alt="Card image cap">
+                        <!-- CARD BODY -->
+                        <div class="card-body">
+                            <h5 class="card-title title-product">PC ASUS ROG</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Suspendisse sit amet elit a felis fringilla sodales.
+                            </p>
+                        </div>
+                        <!-- ./ CARD BODY -->
+                        <!-- CARD FOOTER -->
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <h3 class="price-product">900,50 &euro;</h3>
+
+                            <div class="d-flex col-12 col-md-6">
+                                <input type="number" class="form-control qty-product mr-1" placeholder="1" value="1" />
+                                <button type="button" class="btn btn-success add-cart"><i class="fas fa-cart-plus"></i></button>
+                            </div>
+                        </div>
+                        <!-- CARD FOOTER -->
+                    </div>
+                    <!-- ./ CARD -->
+                </div>
+                <!-- ./ ARTILCE-->
+                <!-- ARTILCE-->
+                <div class="col-12 col-md-4 mb-3">
+                    <!-- CARD -->
+                    <div class="card" data-price="1000.15" id="PC-ASUS-ROG-2">
+                        <img class="card-img-top" src="img/rog.jpg" alt="Card image cap">
+                        <!-- CARD BODY -->
+                        <div class="card-body">
+                            <h5 class="card-title title-product">PC ASUS ROG 2</h5>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Suspendisse sit amet elit a felis fringilla sodales.
+                            </p>
+                        </div>
+                        <!-- ./ CARD BODY -->
+                        <!-- CARD FOOTER -->
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <h3 class="price-product">1000,15 &euro;</h3>
+
+                            <div class="d-flex col-12 col-md-6">
+                                <input type="number" class="form-control qty-product mr-1" placeholder="1" value="1" />
+                                <button type="button" class="btn btn-success add-cart"><i class="fas fa-cart-plus"></i></button>
+                            </div>
+                        </div>
+                        <!-- CARD FOOTER -->
+                    </div>
+                    <!-- ./ CARD -->
+                </div>
+                <!-- ./ ARTILCE-->
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer"></footer>
+
+
+    <!-- Modal confirm delete -->
+    <div class="modal fade" id="modal-confirm-delete" tabindex="-1" role="dialog" aria-labelledby="modalConfirmDelete" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Suppression d'un produit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Voulez vous vraiment supprimer ce produit ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete-product">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form -->
+    <div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-labelledby="modal-signin" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Inscription</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-signin">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="nom">Nom </label>
+                                <input type="text" class="form-control" id="nom" placeholder="nom">
+                                <div class="invalid-feedback">
+                                    Nom invalid
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="prenom">Prénom </label>
+                                <input type="text" class="form-control" id="prenom" placeholder="prenom">
+                                <div class="invalid-feedback">
+                                    Prénom invalid
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="mail">Email</label>
+                                <input type="text" class="form-control" id="mail" placeholder="Email">
+                                <div class="invalid-feedback">
+                                    Email invalid
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="tel">Téléphone</label>
+                                <input type="text" class="form-control" id="tel" placeholder="tel">
+                                <div class="invalid-feedback">
+                                    Téléphone invalid
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="password">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="confirm-password">Mot de passe</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Password">
+                            </div>
+                            <div class="invalid-feedback">
+                                Les mots de passe ne correspondent pas
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse">Adresse</label>
+                            <input type="text" class="form-control" id="adresse" placeholder="123 rue de la soif">
+                        </div>
+                        <div class="form-group">
+                            <label for="complet-adress">Complément d'adresse 2</label>
+                            <input type="text" class="form-control" id="complet-adress" placeholder="Apartement, bâtiment, résidence">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="ville">Ville</label>
+                                <input type="text" class="form-control" id="ville">
+                                <div class="invalid-feedback">
+                                    Ville invalid
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="pays">Pays</label>
+                                <select id="pays" class="form-control">
+                                    <option selected>Choisir</option>
+                                    <option>France</option>
+                                    <option>Belgique</option>
+                                    <option>Hollande</option>
+                                    <option>Suède</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="postal">Code postal</label>
+                                <input type="text" class="form-control" id="postal">
+                                <div class="invalid-feedback">
+                                    Code postal invalid
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="js/vendor/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            //rafraichis la quantité du panier
+            updateQtyCart();
+            //rafraichis le total du panier
+            totalCart();
+
+            ////////////////////////////////////
+            // CART SHOW HIDE
+            //On cache le panier au chargement de la page
+            $("#cart").hide();
+            //Click sur le boutton panier on affiche ou cache le panier ( TOGGLE )
+            $("#btn-cart").click(function () {
+                $("#cart").toggle();
+            });
+
+            ////////////////////////////////////
+            // AJOUTER DANS LE PANIER
+            $(".add-cart").click(function () {
+                var cardProduct = $(this).closest(".card"),
+                    id = cardProduct.attr("id"),
+                    title = cardProduct.find(".title-product").text(),
+                    qty = parseInt(cardProduct.find(".qty-product").val()),
+                    price = qty * parseFloat(cardProduct.attr("data-price"));
+
+                //On vérifie si l'item est déjà présent dans le panier
+                //Si oui on ajoute a la qty existente la qty rajouter
+                //On fait de même pour le prix
+                if ($("#item-" + id).length > 0) {
+                    var item = $("#item-" + id);
+
+                    qty += parseInt(item.find(".item-qty").text());
+                    price += parseFloat(item.find(".item-price").attr("data-price"));
+
+                    item.find(".item-qty").text(qty);
+                    item.find(".item-input-qty").val(qty);
+                    item.find(".item-price").attr("data-price", price);
+                    item.find(".item-price").text(getFormattedPrice(price));
+                } else {//Sinon on crée l'item et on l'ajoute dans la liste des produits du panier
+
+                    var details =   '<li class="list-group-item d-flex flex-column" id="item-' + id + '">' +
+                                        '<div class="d-flex justify-content-between align-items-center">' +
+                                            '<div>' + title + ' <span class="badge badge-primary item-qty">' + qty + '</span></div>' +
+                                            '<div>' +
+                                                '<strong class="mr-2"><span class="item-price" data-price="' + price + '">' + getFormattedPrice(price) + '</span> &euro;</strong>' +
+                                                '<a href="#" class="edit-product mr-2"><i class="fas fa-pencil-alt text-warning"></i></a>' +
+                                                '<a href="#" class="delete-product " data-toggle="modal" data-target="#modal-confirm-delete"><i class="fas fa-trash-alt text-danger"></i></a>' +
+                                            '</div>' +
+                                        '</div>' +
+                                        '<div class="form-edit-qty" style="display:none;">' +
+                                            '<div class="d-flex justify-content-start align-items-center mt-2" > ' +
+                                                '<input type="number" class="form-control col-2 mr-2 item-input-qty" value="' + qty + '">' +
+                                                '<button type="button" class="btn btn-primary btn-plus-qty mr-2">+</button>' +
+                                                '<button type="button" class="btn btn-danger btn-minus-qty">-</button>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</li>';
+
+                    //On ajoute dans la liste du panier l'article
+                    $("#cart-product-lists").append(details);
+                }
+
+                //rafraichis la quantité du panier
+                updateQtyCart();
+                //rafraichis le total du panier
+                totalCart();
+            });
+
+            ////////////////////////////////////
+            // AFFICHER LE FORME POUR MODIFIER LA QUANTITE DU PRODUIT
+            // On bind l'évènement click avec .on() car l'élément à été généré par le javascript et n'existe donc pas au chargement du DOM
+            // Quand on click sur le crayon ( EDIT PRODUCT ) on affiche le formulaire
+            $("body").on("click", ".edit-product", function () {
+                var item = $(this).closest("li"),
+                    formEdit = item.find(".form-edit-qty");
+
+                formEdit.toggle();
+            });
+
+            ////////////////////////////////////
+            // MODIFIER + LA QUANTITE DU PRODUIT
+            // On bind l'event click avec .on() car l'élément à été généré par le javascript et n'existe donc pas au chargement du DOM
+            // Quand on click sur le boutton plus on récupère l'ancienne qty et l'ancien prix
+            // Puis on calcule le prix unitaire d'un produit
+            // Puis on calclcule le nouveau prix et on modifie les valeurs dans le panier
+            $("body").on("click", ".btn-plus-qty", function () {
+                var item = $(this).closest("li"),
+                    inputQty = parseInt($(this).prev().val()),
+                    qty = parseInt(item.find(".item-qty").text()),
+                    priceUnit = parseFloat(item.find(".item-price").attr("data-price")).toFixed(2) / qty,
+                    newQty = inputQty + qty,
+                    newPrice = priceUnit * newQty;
+
+
+                item.find(".item-qty").text(newQty);
+                item.find(".item-price").text(getFormattedPrice(newPrice));
+                item.find(".item-price").attr("data-price", newPrice);
+
+                //rafraichis la quantité du panier
+                updateQtyCart();
+                //rafraichis le total du panier
+                totalCart();
+            });
+
+            ////////////////////////////////////
+            // MODIFIER - LA QUANTITE DU PRODUIT
+            // On bind l'event click avec .on() car l'élément à été généré par le javascript et n'existe donc pas au chargement du DOM
+            // Quand on click sur le boutton plus on récupère l'ancienne qty et l'ancien prix
+            // Puis on calcule le prix unitaire d'un produit
+            // Puis on calclcule le nouveau prix et on modifie les valeurs dans le panier
+            $("body").on("click", ".btn-minus-qty", function () {
+                var item = $(this).closest("li"),
+                    inputQty = parseInt($(this).prev().prev().val()),
+                    qty = parseInt(item.find(".item-qty").text()),
+                    priceUnit = parseFloat(item.find(".item-price").attr("data-price")).toFixed(2) / qty,
+                    newQty = inputQty > qty ? qty : (qty - inputQty), // Si l'inputqty est > a la qty alors  on fait rien sinon on soustrait
+                    newPrice = priceUnit * newQty;
+
+                //Si la nouvelle qty est = a 0 on la supprime
+                if (newQty == 0) item.remove();
+                else { // Sinon on l'a modifie
+                    item.find(".item-qty").text(newQty);
+                    item.find(".item-price").text(getFormattedPrice(newPrice));
+                    item.find(".item-price").attr("data-price", newPrice);
+                }
+
+                //rafraichis la quantité du panier
+                updateQtyCart();
+                //rafraichis le total du panier
+                totalCart();
+            });
+
+            //////////////////////////////////
+            // MODAL CONFIRM DELETE
+            // Au click sur la corbeille on set un data attribut sur la modal qui sera l'id de l'item
+            // Ce qui nous servira pour le sélectionner et le supprimer sur le click du boutton supprimer de la modal
+            $("body").on("click", ".delete-product", function () {
+                var item = $(this).closest("li"),
+                    itemId = item.attr("id");
+
+                $("#modal-confirm-delete").attr("data-item-id", itemId);
+            });
+
+            // Au click du bouton supprimer de la modal
+            // On récupère le data-item-id
+            // On remove l'item grace à son id
+            $("#confirm-delete-product").click(function () {
+                var modal = $("#modal-confirm-delete"),
+                    itemId = modal.attr("data-item-id");
+
+                $("#" + itemId).remove();
+
+                modal.modal('hide');
+
+                //rafraichis la quantité du panier
+                updateQtyCart();
+                //rafraichis le total du panier
+                totalCart();
+            });
+
+
+            //////////////////////////////////
+            // FORMULAIRE INSCRIPTION
+            regexNomPrenom = new RegExp(/^[a-z]+(-{1}[a-z]{2,}){0,1}$/, 'i'),
+            regexEmail = new RegExp(/^[a-z0-9]+([.]{1}[a-z0-9]+){0,}@[a-z0-9]+(([-.]{1}[a-z0-9]+){0,})[.]{1}[a-z]{2,3}$/, 'i'),
+            regexZip = new RegExp(/^[0-9]{5}$/,'i'),
+            regexTel = new RegExp(/^0{1}[1-9]{1}[0-9]{8}$/),
+                regexCity = new RegExp(/^[a-z]+$/, 'i');
+
+            //Quand on tape dans input du formulaire 
+            //On vérifie suivant l'input la regexp associé
+            //Si c'est bon on valid l'input sinon on affiche un message d'erreur
+            $("#form-signin :input").keyup(function() {
+                var id = $(this).attr("id"),
+                    val = $(this).val(),
+                    isValid = false;
+
+                if (id == "nom" || id == "prenom") {
+                    isValid = regexNomPrenom.test(val);
+                } else if (id == "mail") {
+                    isValid = regexEmail.test(val);
+                    console.log(isValid)
+                } else if (id == "postal") {
+                    isValid = regexZip.test(val);
+                } else if (id == "tel") {
+                    isValid = regexTel.test(val);
+                } else if (id == "ville") {
+                    isValid = regexCity.test(val);
+                } else if (id == "confirm-password") {
+                    if (val == $("#password").val()) {
+                        isValid = true;
+                        toggleClassValidate($("#password"), isValid);
+                    } else {
+                        isValid = false;
+                        toggleClassValidate($("#password"), isValid);
+                    }
+                } else isValid = true;
+
+                toggleClassValidate($(this), isValid);
+            });
+        });
+
+        //Calcul la qty des artilces et affiche la qty
+        function updateQtyCart() {
+            var totalQty = 0;
+
+            //boucle tous les items du panier
+            $(".list-group-item").each(function (i) {
+                totalQty += parseInt($(this).find(".item-qty").text());
+            });
+            //Sélectionne le badge avec la quantité dans la navbar et modifie la qty
+            $("#nav-qty-items").text(totalQty);
+        }
+
+        //Calcul le total des artilces et affiche le total
+        function totalCart() {
+            var total = 0;
+
+            //boucle tous les items du panier
+            $(".list-group-item").each(function (i) {
+                total += parseFloat($(this).find(".item-price").attr("data-price"));
+            });
+            //Sélectionne le total et modifie
+            $("#total-cart").text(getFormattedPrice(total));
+        }
+
+        //Fonction qui prend en parametre un prix
+        //Le format avec deux décimal et une , a la place du .
+        //Et le retourne
+        function getFormattedPrice(price) {
+            //ToFixed(2) permet d'afficher deux décimal
+            //ToString transforme le int en string
+            //Replace va chercher le caractère et remplacer par celui choisis donc la il cherche le . et remplace par ,
+            return price.toFixed(2).toString().replace(".", ",");
+        }
+
+        //Fonction qui va ajouter ou enlever les class invalid du formulaire
+        //Prend en parametre l'élément donc l'input et le boolean isValid
+        function toggleClassValidate(element, isValid) {
+            if (!isValid) {
+                $(element).addClass("is-invalid");
+                $(element).removeClass("is-valid");
+            } else {
+                $(element).removeClass("is-invalid");
+                $(element).addClass("is-valid");
+            }
+        }
+    </script>
+</body>
+</html>
